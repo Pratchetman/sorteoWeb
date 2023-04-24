@@ -1,0 +1,157 @@
+.principal {
+  padding: 15px 20px;
+  background: linear-gradient(to bottom, RGB(61,48,39), rgb(83, 62, 22));
+  background-attachment: fixed;
+  .logoBig{
+    height: 150px;
+  }
+ 
+  h3 {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+  label {
+    margin: 10px;
+    color: white;
+  }
+  input{
+    height: 40px;
+    width: 230px;
+    border: 0px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.439), -4px -2px 0px 2px rgba(255, 255, 255, 0.429);
+    padding: 7px;
+  }
+ min-height: 100vh;
+}
+.inputName{
+  
+  width: 350px !important;
+}
+.listas {
+  border: 0px solid black;
+  border-radius: 8px;
+  width: 350px;
+  min-height: 200px;
+  margin: auto;
+  background-color: white;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.439), -4px -2px 0px 2px rgba(255, 255, 255, 0.429);
+  padding: 4px;
+  max-height: 367px;
+  overflow-y: scroll;
+  .options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:RGB(255,165,0);
+    border-radius: 8px;
+    color: rgb(83, 62, 22);
+    margin: 4px;
+    padding: 4px 8px;
+    .key{
+      margin: 0px;
+      font-weight: 600;
+      width: 180% !important;
+      overflow: hidden;
+      text-align: start;
+    }
+    .borrado{
+      margin: 0px;
+      width: 10%;
+      margin-left: 4px;
+    }
+    .borrado:hover{ 
+      cursor: pointer;
+    }
+  }
+}
+.disflexListas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
+ .titles{
+  margin-top: 40px;
+ }
+}
+.butStart{
+  background-color: orange !important;
+  border: 0px !important;
+  color: rgb(255, 255, 255);
+  margin-top: 15px;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.439), -2px -1px 0px 2px rgba(255, 255, 255, 0.429);
+}
+.butStartBottom{
+  background-color: orange !important;
+  border: 0px !important;
+  color: rgb(255, 255, 255);
+  margin-top: 30px;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.439), -2px -1px 0px 2px rgba(255, 255, 255, 0.429);
+}
+
+.butStart:hover{
+  background-color:rgb(211, 137, 0) !important;
+}
+.butStartBottom:hover{
+  background-color:rgb(211, 137, 0) !important;
+}
+.buttonAdd {
+  background-color: orange !important;
+  border: 0px !important;
+  color: rgb(255, 255, 255);
+  margin-left: 30px;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.439), -2px -1px 0px 2px rgba(255, 255, 255, 0.429);
+  
+}
+.buttonAdd:hover{
+  background-color:rgb(211, 137, 0) !important;
+}
+.error{
+    color: red;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+.madeFor{
+  margin-top: 10px;
+  color: rgba(255, 166, 0, 0.533);
+  margin-bottom: 0px;
+  margin-top: 50px;
+ 
+}
+.listas::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.listas::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+.listas::-webkit-scrollbar-button:increment,.listas::-webkit-scrollbar-button {
+  display: none;
+} 
+
+.listas::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.listas::-webkit-scrollbar-thumb {
+  background-color: rgb(211, 137, 0);
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.listas::-webkit-scrollbar-track {
+  border-radius: 10px; 
+  margin:7px; 
+}
+
+@media (max-width: 480px) {
+  .logoBig {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+}

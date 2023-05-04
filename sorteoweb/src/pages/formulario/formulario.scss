@@ -26,14 +26,26 @@
   }
  min-height: 100vh;
 }
+.selectWin{
+  height: 40px;
+  // width: 230px;
+  border: 0px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.439), -4px -2px 0px 2px rgba(255, 255, 255, 0.429);
+  padding: 7px;
+}
+option{
+  background-color: orange;
+  color: white;
+}
 .inputName{
   
-  width: 350px !important;
+  width: 310px !important;
 }
 .listas {
   border: 0px solid black;
   border-radius: 8px;
-  width: 350px;
+  width: 310px;
   min-height: 200px;
   margin: auto;
   background-color: white;
@@ -149,9 +161,30 @@
 }
 
 @media (max-width: 480px) {
+  .principal{
+    position: relative;
+    .resultado{
+      position: fixed;
+      top: 10px;
+    }
+  }
   .logoBig {
     width: 100% !important;
     height: auto !important;
   }
+  .disflexListas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+   .titles{
+    margin-top: 20px;
+   }
+   .inputOpt{
+    width: 65% !important;
+   }
+  }
   
+
 }

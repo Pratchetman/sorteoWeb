@@ -5,18 +5,25 @@ import { Button } from "react-bootstrap";
 import "./formulario.scss";
 import { Resultado } from "../../components/resultado/Resultado";
 
-
 export const Formulario = () => {
   const [listaOpciones, setListaOpciones] = useState([]);
   const [listaMails, setListaMails] = useState([]);
   const [superSort, setSuperSort] = useState(false);
   const [mail, setMail] = useState("");
   const [name, setName] = useState("");
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState([]);
   const [message, setMessage] = useState("");
   const [message2, setMessage2] = useState("");
   const [nameSorteo, setNameSorteo] = useState("");
- 
+  const [numWinners, setNumWinners] = useState(1);
+  const [show, setShow] = useState(false);
+
+  const handleNum = (e) => {
+    const qty = e.target.value;
+    setNumWinners(qty);
+  };
+
+  console.log(numWinners)
 
   const handleChange = (e) => {
     const name = e.target.value;
@@ -47,7 +54,7 @@ export const Formulario = () => {
     } else if (listaMails.includes(mail)) {
       setMessage("El email introducido ya existe en la lista");
     } else {
-      setMessage("Mail incorrecto, intentalo de nuevo");
+      setMessage("Mail incorrecto, inténtalo de nuevo");
     }
   };
 
@@ -66,22 +73,27 @@ export const Formulario = () => {
   const sortear = () => {
     if (!superSort) {
       if (listaOpciones.length > 1) {
-        let resultado = seleccionarAleatorio(listaOpciones);
+        let resultado = seleccionarAleatorio(
+          listaOpciones,
+          numWinners
+        );
         setResult(resultado);
+        setShow(true);
         setMessage2("");
       } else {
         setMessage2("Introduce mínimo dos opciones");
       }
     } else {
-      if (listaOpciones.length > 1 && listaMails.length > 0) {
-        let resultado = seleccionarAleatorio(listaOpciones);
+      if (listaOpciones.length > 1 && listaMails.length > 0 && listaOpciones.length > numWinners) {
+        let resultado = seleccionarAleatorio(listaOpciones, numWinners);
         mandarMails(listaMails, resultado, nameSorteo);
         setResult(resultado);
         setMessage("");
         setMessage2("");
+        setShow(!show)
       } else {
-        listaOpciones.length < 2 &&
-          setMessage2("Introduce mínimo dos opciones");
+        (listaOpciones.length < 2 || listaOpciones.length < parseInt(numWinners)) &&
+          setMessage2("Comprueba la cantidad de opciones");
         listaMails.length < 1 && setMessage("Debes introducir algun email");
       }
     }
@@ -107,24 +119,55 @@ export const Formulario = () => {
         <div>
           <img className="logoBig" src="./images/SorteoWeb.png" alt="" />
         </div>
-        {result !== "" && <Resultado result={result} setResult={setResult} setListaMails={setListaMails} setListaOpciones={setListaOpciones} />}
+        {show && (
+          <Resultado
+            show={show}
+            setShow={setShow}
+            result={result}
+            setResult={setResult}
+            setListaMails={setListaMails}
+            setListaOpciones={setListaOpciones}
+            setNameSorteo={setNameSorteo}
+          />
+        )}
         {superSort ? (
           <>
+            <Button
+              className="butStart"
+              onClick={() => setSuperSort(!superSort)}
+            >
+              Cambiar a modo sencillo
+            </Button>
+            <br />
+            <div className="disflexListas">
+            <div>
+              <h3>Nombre del sorteo</h3>
+              <input
+                className="inputName"
+                type="text"
+                placeholder="Nombre del sorteo"
+                onChange={handleNameSorteo}
+                value={nameSorteo}
+              />
+            </div>
+            <div className="selWin">
+              <h3>Ganadores</h3>
+              <select className="selectWin" onChange={handleNum} name="qty">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            </div>
          
-          <Button className="butStart" onClick={() => setSuperSort(!superSort)}>
-            Cambiar a modo sencillo
-          </Button>
-          <br />
-          <h3>Nombre del sorteo</h3>
-          <input className="inputName" type="text" placeholder="Nombre del sorteo" onChange={handleNameSorteo} value={nameSorteo}/>
           </>
         ) : (
-           <Button className="butStart" onClick={() => setSuperSort(!superSort)}>
+          <Button className="butStart" onClick={() => setSuperSort(!superSort)}>
             Cambiar a modo avanzado
           </Button>
         )}
-       
-     
       </div>
       <div className="disflexListas">
         <div>
@@ -132,6 +175,7 @@ export const Formulario = () => {
             <h3>Opciones</h3>
 
             <input
+              className="inputOpt"
               type="text"
               onChange={handleChange}
               value={name}
@@ -172,6 +216,7 @@ export const Formulario = () => {
               <h3>Destinatarios</h3>
 
               <input
+              className="inputOpt"
                 type="email"
                 onChange={handleEmail}
                 value={mail}
@@ -212,7 +257,7 @@ export const Formulario = () => {
       <Button className="butStartBottom" onClick={sortear}>
         EMPEZAR SORTEO
       </Button>
-      <p className="madeFor">Programado por Prachett ✌</p>
+      <p className="madeFor">Programado por Pratchett ✌</p>
     </div>
   );
 };

@@ -5,7 +5,7 @@ const mandarMails = (mails, result, sorteo) =>{
   const datos = [[mails], result, sorteo];
 
     axios
-    .post("http://localhost:4000/mailer", datos)
+    .post("http://15.237.138.68/mailer", datos)
     .then((error)=>console.log(error))
     .catch((err)=>console.log(err))
 

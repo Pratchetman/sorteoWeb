@@ -220,7 +220,7 @@ export const Formulario = () => {
                 type="email"
                 onChange={handleEmail}
                 value={mail}
-                placeholder="Introduce destinatario"
+                placeholder="Introduce al menos un email"
               />
               <Button onClick={addEmail} className="buttonAdd">
                 Añadir
